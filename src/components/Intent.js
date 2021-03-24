@@ -44,13 +44,6 @@ class Intent extends Component {
             }
             return el;
         })
-        // for(let selIntent of selectedIntents){
-        //     if(intent.id === selIntent.id && !intent.checked){
-
-        //     } else {
-        //         updatedSelectedIntent.push(selIntent)
-        //     }
-        // }
         if(intent.checked){
             updatedSelectedIntent.push(intent);
         } else {
