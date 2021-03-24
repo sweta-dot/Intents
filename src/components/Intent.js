@@ -36,19 +36,37 @@ class Intent extends Component {
 
     //on single intent select
     onIntentSelect(intent) {
-        let selectedIntents = this.state.selectedIntents;
+        let updatedSelectedIntent = this.state.selectedIntents || [];
+        let index = 0;
         let updatedIntents = this.state.intents.map((el)=> {
             if(el.id === intent.id){
                 el.checked = !el.checked
             }
             return el;
         })
-        selectedIntents.push(intent);
+        // for(let selIntent of selectedIntents){
+        //     if(intent.id === selIntent.id && !intent.checked){
+
+        //     } else {
+        //         updatedSelectedIntent.push(selIntent)
+        //     }
+        // }
+        if(intent.checked){
+            updatedSelectedIntent.push(intent);
+        } else {
+            for(let ind in updatedSelectedIntent) {
+                if(updatedSelectedIntent[ind].id === intent.id){
+                    index = ind;
+                    break;
+                }
+            }
+            updatedSelectedIntent.splice(index, 1);
+        }
         this.setState({
-            selectedIntents: selectedIntents,
+            selectedIntents: updatedSelectedIntent,
             intents: updatedIntents
         })
-        console.log('selected intents', selectedIntents);
+        console.log('selected intents', updatedSelectedIntent);
     }
 
     //returning the intents DOM(table body)
